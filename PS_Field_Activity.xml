@@ -1,0 +1,67 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://ws.apache.org/axis2" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://ws.apache.org/axis2">
+   <wsdl:types/>
+   <wsdl:message name="in"/>
+   <wsdl:message name="out"/>
+   <wsdl:portType name="PS_Field_ActivityPortType">
+      <wsdl:operation name="mediate">
+         <wsdl:input message="tns:in" wsaw:Action="urn:mediate"/>
+         <wsdl:output message="tns:out" wsaw:Action="urn:mediateResponse"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="PS_Field_ActivitySoap11Binding" type="tns:PS_Field_ActivityPortType">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="mediate">
+         <soap:operation soapAction="urn:mediate" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="PS_Field_ActivitySoap12Binding" type="tns:PS_Field_ActivityPortType">
+      <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+      <wsdl:operation name="mediate">
+         <soap12:operation soapAction="urn:mediate" style="document"/>
+         <wsdl:input>
+            <soap12:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap12:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="PS_Field_ActivityHttpBinding" type="tns:PS_Field_ActivityPortType">
+      <http:binding verb="POST"/>
+      <wsdl:operation name="mediate">
+         <http:operation location="mediate"/>
+         <wsdl:input>
+            <mime:content type="text/xml" part="parameters"/>
+         </wsdl:input>
+         <wsdl:output>
+            <mime:content type="text/xml" part="parameters"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="PS_Field_Activity">
+      <wsdl:port name="PS_Field_ActivityHttpsSoap11Endpoint" binding="tns:PS_Field_ActivitySoap11Binding">
+         <soap:address location="https://mantis08.aetra.co.id:8243/services/PS_Field_Activity.PS_Field_ActivityHttpsSoap11Endpoint"/>
+      </wsdl:port>
+      <wsdl:port name="PS_Field_ActivityHttpSoap11Endpoint" binding="tns:PS_Field_ActivitySoap11Binding">
+         <soap:address location="http://mantis08.aetra.co.id:8280/services/PS_Field_Activity.PS_Field_ActivityHttpSoap11Endpoint"/>
+      </wsdl:port>
+      <wsdl:port name="PS_Field_ActivityHttpsSoap12Endpoint" binding="tns:PS_Field_ActivitySoap12Binding">
+         <soap12:address location="https://mantis08.aetra.co.id:8243/services/PS_Field_Activity.PS_Field_ActivityHttpsSoap12Endpoint"/>
+      </wsdl:port>
+      <wsdl:port name="PS_Field_ActivityHttpSoap12Endpoint" binding="tns:PS_Field_ActivitySoap12Binding">
+         <soap12:address location="http://mantis08.aetra.co.id:8280/services/PS_Field_Activity.PS_Field_ActivityHttpSoap12Endpoint"/>
+      </wsdl:port>
+      <wsdl:port name="PS_Field_ActivityHttpsEndpoint" binding="tns:PS_Field_ActivityHttpBinding">
+         <http:address location="https://mantis08.aetra.co.id:8243/services/PS_Field_Activity.PS_Field_ActivityHttpsEndpoint"/>
+      </wsdl:port>
+      <wsdl:port name="PS_Field_ActivityHttpEndpoint" binding="tns:PS_Field_ActivityHttpBinding">
+         <http:address location="http://mantis08.aetra.co.id:8280/services/PS_Field_Activity.PS_Field_ActivityHttpEndpoint"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
